@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Veteriner Uygulamasi</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+		rel="stylesheet" 
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+		crossorigin="anonymous">
+	</head>
+		<style>
+		
+			
+			.container {  
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+			margin-top:10%;	
+			}
+			.form-control:hover{
+	 		background-color: #92a8d1;
+			-webkit-transition: background-color 1s ease-out;
+    		-moz-transition: background-color 1s ease-out;
+   			-o-transition: background-color 1s ease-out;
+    		transition: background-color 1s ease-out;
+			cursor:pointer;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	
+	}
+	
+			.btn{
+			background-color: red;
+			font-weight: bold;
+		}
+		
+			.btn:hover{
+		    transition: background-color 0.2s ease-out;
+			background-color:green;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+			h2 {
+			color:black;
+			font-weight: bold;
+			text-align: center;
+	}
+	
+			.btn1{
+			background-color: #588c7e;
+			font-weight: bold;
+			margin-left:80%;
+			margin-bottom:5%;
+		}
+		
+			.btn1:hover{
+		    transition: background-color 0.2s ease-out;
+			background-color:#d96459;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+	
+	
+		</style>
+		
+	<body>
+		<div class= "container">
+			<h2>Hayvan Ekle</h2>
+			<hr/>
+			<form action="#" th:action = "@{/saveAnimal}" th:object = "${animal}" method = "POST" >
+				<input type="text" th:field = "*{sahipAd}" placeholder = "Sahibinin ismini girin" class = "form-control col-4 mb-4" />
+				<input type="text" th:field = "*{tur}" placeholder = "Turunu girin" class = "form-control col-4 mb-4" />
+				<input type="text" th:field = "*{cins}" placeholder = "Cinsini girin" class = "form-control col-4 mb-4" />
+				<input type="text" th:field = "*{isim}" placeholder = "Ismini girin" class = "form-control col-4 mb-4" />
+				<input type="text" th:field = "*{yas}" placeholder = "Yasini girin" class = "form-control col-4 mb-4" />				
+				<input type="text" th:field = "*{aciklama}" placeholder = "Aciklama girin" class = "form-control col-4 mb-4" />				
+				
+				<button class= "btn btn-primary" type="submit">Kaydet</button>											
+				
+				<input type = "hidden" th:field = "*{id}" />
+			
+			</form>
+			
+			<hr/>
+			<a th:href="@{/list}" class= "btn btn-primary btn1">Listeye Don</a>
+			
+			
+		</div>	
+	</body>
+</html>

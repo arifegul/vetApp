@@ -1,0 +1,105 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Veteriner Uygulamasi</title>
+		
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
+		
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+		rel="stylesheet" 
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+		crossorigin="anonymous">
+		
+		<style>
+		
+			
+		.btn1{
+		background-color: #e06377;
+		}
+	
+		.btn1:hover{		
+		margin-bottom: 20px;
+		transition: background-color 0.2s ease-out;
+		background-color:#b8a9c9;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		
+		.btn{
+		margin-bottom: 20px;
+		margin:10px;
+		transition: background-color 0.2s ease-out;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.3), 0 17px 50px 0 rgba(0,0,0,0.2);
+		}
+		
+		.btn2{
+		margin-left:45%;
+		background-color: red;
+		}
+		
+		.btn2:hover{
+		transition: background-color 0.2s ease-out;
+		background-color:green;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		
+		
+		
+
+		</style>
+	</head>
+	<body>
+		<div class= "container">
+			<h2>Hayvanlar</h2>
+			<hr/>
+			
+			<a th:href = "@{/addAnimal}" class = "btn btn-primary mb-2 btn1">Hayvan Ekle</a>
+			<a th:href = "@{/listSahip}" class = "btn btn-primary mb-2 btn1">Hayvan Sahibi Bilgileri</a>
+			<table class= "table table-bordered table-striped" id="animal-table">
+				<thead>
+					<tr>
+						<th>Sahip Ad</th>
+						<th>Tur</th>
+					    <th>Cins</th>
+						<th>Isim</th>
+						<th>Yas</th>
+						<th>Aciklama</th>
+						<th>Durum</th>
+					</tr>				
+				</thead>
+				
+				<tbody>
+					<tr th:each = "hayvan: ${animals}">
+						<td th:text = "${hayvan.sahipAd}"></td>
+						<td th:text = "${hayvan.tur}"></td>
+						<td th:text = "${hayvan.cins}"></td>
+						<td th:text = "${hayvan.isim}"></td>												
+						<td th:text = "${hayvan.yas}"></td>
+						<td th:text = "${hayvan.aciklama}"></td>	
+						
+						<td>
+							<a th:href = "@{/updateForm(id = ${hayvan.id})}" class = "btn btn-info">Guncelle</a>
+							<a th:href = "@{/deleteAnimal(id = ${hayvan.id})}" class = "btn btn-danger">Sil</a>
+						
+						
+						</td>											
+					</tr>
+				</tbody>				
+			</table>		
+		</div>	
+		<hr/>
+		<a th:href = "@{/home}" class= "btn btn-primary btn2">CIKIS</a>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				$("#animal-table").DataTable({
+					'aoColumnDefs': [{
+						'bSortable': false,
+						'aTargets': [-1]
+					}]
+				});
+			})
+		</script>
+	</body>
+</html>
